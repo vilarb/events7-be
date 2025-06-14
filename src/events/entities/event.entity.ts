@@ -18,7 +18,7 @@ export class Event {
   description: string;
 
   @Column()
-  type: string;
+  type: 'crosspromo' | 'liveops' | 'app' | 'ads';
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
