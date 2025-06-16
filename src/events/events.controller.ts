@@ -7,6 +7,9 @@ import { EventsService } from './events.service';
   model: {
     type: Event,
   },
+  query: {
+    alwaysPaginate: true,
+  },
 })
 @Controller('events')
 export class EventsController implements CrudController<Event> {
