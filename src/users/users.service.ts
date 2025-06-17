@@ -16,23 +16,28 @@ export class UsersService {
    * @param ip - The IP address to authorize
    * @returns The authorization response
    */
-  async authorize(ip: string) {
-    const result = await firstValueFrom(
-      this.httpService.get<IpApiResponse>(`http://ip-api.com/json/${ip}`),
-    );
+  async authorize(ip: string): Promise<AuthApiResponse> {
+    try {
+      const result = await firstValueFrom(
+        this.httpService.get<IpApiResponse>(`http://ip-api.com/json/${ip}`),
+      );
 
-    const authResponse = await firstValueFrom(
-      this.httpService.get<AuthApiResponse>(
-        `https://europe-west1-o7tools.cloudfunctions.net/fun7-ad-partner-expertise-test?countryCode=${result.data.countryCode}`,
-        {
-          auth: {
-            username: 'fun7user',
-            password: 'fun7pass',
+      const authResponse = await firstValueFrom(
+        this.httpService.get<AuthApiResponse>(
+          `https://europe-west1-o7tools.cloudfunctions.net/fun7-ad-partner-expertise-test?countryCode=${result.data.countryCode}`,
+          {
+            auth: {
+              username: 'fun7user',
+              password: 'fun7pass',
+            },
           },
-        },
-      ),
-    );
+        ),
+      );
 
-    return authResponse.data;
+      return authResponse.data;
+    } catch (error) {
+      console.error(error);
+      return { ads: 'you shall not pass!' };
+    }
   }
 }
