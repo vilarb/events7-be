@@ -15,14 +15,14 @@ import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { Event } from './entities/event.entity';
 import { FindEventsDto } from './dto/find-events.dto';
-import { CreateEventGuard } from './guards/createEvent.guard';
+import { AdsEventGuard } from './guards/adsEvent.guard';
 
 @Controller('events')
+@UseGuards(AdsEventGuard)
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
   @Post()
-  @UseGuards(CreateEventGuard)
   create(@Body() createUserDto: CreateEventDto) {
     return this.eventsService.create(createUserDto);
   }

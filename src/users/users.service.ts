@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import {
@@ -34,10 +34,18 @@ export class UsersService {
         ),
       );
 
+      if (authResponse.data.ads !== 'sure, why not!') {
+        throw new ForbiddenException(
+          'Not authorized to perform operations on ads-type events',
+        );
+      }
+
       return authResponse.data;
-    } catch (error) {
+    } catch (error: unknown) {
       console.error(error);
-      return { ads: 'you shall not pass!' };
+      throw new ForbiddenException(
+        error instanceof Error ? error?.message : 'Failed to authorize user',
+      );
     }
   }
 }
