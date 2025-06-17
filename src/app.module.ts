@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { EventsModule } from './events/events.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Event } from './events/entities/event.entity';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { Event } from './events/entities/event.entity';
       synchronize: true,
     }),
     EventsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
