@@ -7,6 +7,7 @@ import {
   Body,
   Param,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { FindManyOptions, ILike } from 'typeorm';
@@ -14,12 +15,14 @@ import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { Event } from './entities/event.entity';
 import { FindEventsDto } from './dto/find-events.dto';
+import { AuthGuard } from './events.guard';
 
 @Controller('events')
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
   @Post()
+  @UseGuards(AuthGuard)
   create(@Body() createUserDto: CreateEventDto) {
     return this.eventsService.create(createUserDto);
   }
