@@ -1,6 +1,6 @@
 import { IsOptional, IsInt, Min, Max, IsEnum, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { Event } from '../entities/event.entity';
+import { Event, Type as EventType } from '../entities/event.entity';
 
 export class FindEventsDto {
   @IsOptional()
@@ -25,8 +25,8 @@ export class FindEventsDto {
   orderDirection?: 'ASC' | 'DESC';
 
   @IsOptional()
-  @IsEnum(Event)
-  type?: Event['type'];
+  @IsEnum(EventType)
+  type?: EventType;
 
   @IsOptional()
   @IsString()
