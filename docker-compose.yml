@@ -7,9 +7,8 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - '3000:3000'
-    environment:
-      - NODE_ENV=development
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/events7
+    env_file:
+      - .env
     volumes:
       - .:/app
       - /app/node_modules
