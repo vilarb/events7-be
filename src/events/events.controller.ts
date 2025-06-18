@@ -33,7 +33,14 @@ export class EventsController {
     total: number;
   }> {
     // Default values for page and perPage in case they are not provided
-    const { page = 1, perPage = 100, search, orderBy, orderDirection } = params;
+    const {
+      page = 1,
+      perPage = 100,
+      search,
+      orderBy,
+      orderDirection,
+      type,
+    } = params;
     const skip = (page - 1) * perPage;
 
     const queryParams: FindManyOptions<Event> = {
@@ -54,6 +61,12 @@ export class EventsController {
 
     if (orderBy) {
       queryParams.order = { [orderBy]: orderDirection };
+    }
+
+    if (type) {
+      queryParams.where = {
+        type: type,
+      };
     }
 
     return await this.eventsService.findAllWithPagination(queryParams);
