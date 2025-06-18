@@ -1,24 +1,30 @@
-import { IsString, IsNotEmpty, IsEnum, IsNumber } from 'class-validator';
-import { Event } from '../entities/event.entity';
+import {
+  IsString,
+  IsNotEmpty,
+  IsEnum,
+  IsNumber,
+  MinLength,
+} from 'class-validator';
+import { Event, Priority, Type } from '../entities/event.entity';
 
 export class CreateEventDto {
   @IsString()
   @IsNotEmpty()
-  @IsEnum(Event)
+  @IsEnum(Type)
   type: Event['type'];
 
   @IsString()
   @IsNotEmpty()
-  @IsEnum(Event)
+  @MinLength(1)
   title: Event['title'];
 
   @IsString()
   @IsNotEmpty()
-  @IsEnum(Event)
+  @MinLength(1)
   description: Event['description'];
 
   @IsNumber()
   @IsNotEmpty()
-  @IsEnum(Event)
-  priority: Event['priority'];
+  @IsEnum(Priority)
+  priority: Priority;
 }

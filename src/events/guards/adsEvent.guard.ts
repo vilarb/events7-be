@@ -9,6 +9,7 @@ import { Request } from 'express';
 import { CreateEventDto } from '../dto/create-event.dto';
 import { UpdateEventDto } from '../dto/update-event.dto';
 import { EventsService } from '../events.service';
+import { Type } from '../entities/event.entity';
 
 @Injectable()
 export class AdsEventGuard implements CanActivate {
@@ -37,7 +38,7 @@ export class AdsEventGuard implements CanActivate {
     }
 
     // Check if the user is authorized to create an ads event
-    if (method === 'POST' && body.type === 'ads') {
+    if (method === 'POST' && body.type === Type.ADS) {
       return await this.checkAdsAuthorization(request);
     }
 
@@ -46,7 +47,7 @@ export class AdsEventGuard implements CanActivate {
       const eventId = +params.id;
       const existingEvent = await this.eventsService.findOne(eventId);
 
-      if (existingEvent.type === 'ads' || body.type === 'ads') {
+      if (existingEvent.type === Type.ADS || body.type === Type.ADS) {
         return await this.checkAdsAuthorization(request);
       }
     }
@@ -56,7 +57,7 @@ export class AdsEventGuard implements CanActivate {
       const eventId = +params.id;
       const existingEvent = await this.eventsService.findOne(eventId);
 
-      if (existingEvent.type === 'ads') {
+      if (existingEvent.type === Type.ADS) {
         return await this.checkAdsAuthorization(request);
       }
     }
