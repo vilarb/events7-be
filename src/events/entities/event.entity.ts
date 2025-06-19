@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ApiProperty } from '@nestjs/swagger';
 
 export enum Priority {
   P1 = 1,
@@ -28,24 +29,34 @@ export enum Type {
 
 @Entity()
 export class Event {
+  @ApiProperty({ description: 'The unique identifier of the event' })
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiProperty({ description: 'The title of the event' })
   @Column({ length: 255 })
   title: string;
 
+  @ApiProperty({ description: 'The description of the event' })
   @Column('text')
   description: string;
 
+  @ApiProperty({ description: 'The type of event', enum: Type })
   @Column()
   type: Type;
 
+  @ApiProperty({
+    description: 'The priority level of the event',
+    enum: Priority,
+  })
   @Column()
   priority: Priority;
 
+  @ApiProperty({ description: 'When the event was created' })
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
+  @ApiProperty({ description: 'When the event was last updated' })
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 }

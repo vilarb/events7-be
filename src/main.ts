@@ -13,7 +13,6 @@ async function bootstrap() {
     .setTitle('Events7 API')
     .setDescription('Events7 API description')
     .setVersion('1.0')
-    .addTag('events')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, documentFactory);
