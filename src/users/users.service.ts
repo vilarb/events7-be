@@ -42,7 +42,6 @@ export class UsersService {
 
       return authResponse.data;
     } catch (error: unknown) {
-      console.error(error);
       throw new ForbiddenException(
         error instanceof Error ? error?.message : 'Failed to authorize user',
       );

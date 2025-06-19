@@ -4,7 +4,7 @@ import {
   Injectable,
   ForbiddenException,
 } from '@nestjs/common';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../../users/users.service';
 import { Request } from 'express';
 import { CreateEventDto } from '../dto/create-event.dto';
 import { UpdateEventDto } from '../dto/update-event.dto';
