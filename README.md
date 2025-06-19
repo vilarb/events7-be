@@ -1,98 +1,173 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# <img src="assets/favicono7.png" width="25" alt="Events7 Logo" /> Events7
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Hi. Welcome to the Events7 Fullstack Web Developer Expertise Test. This readme is mostly generated, but i have added some caveats that could be important and clarify some things at the end. Building this was quite fun. Hope to hear from you soon so we can talk the project over.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Features
 
-## Description
+- **Event Management**: Full CRUD operations for events with priority levels and types
+- **User Authorization**: IP-based authorization system for ads-type events
+- **Database Integration**: PostgreSQL with TypeORM for data persistence
+- **API Documentation**: Swagger/OpenAPI documentation
+- **Docker Support**: Complete containerization with Docker Compose
+- **Testing**: Unit and E2E tests with Jest
+- **Code Quality**: ESLint and Prettier configuration
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 📋 Prerequisites
 
-## Project setup
+- Node.js 20+
+- Docker and Docker Compose
+- PostgreSQL (if running locally)
 
-```bash
-$ npm install
+## 🏗️ Architecture
+
+The project follows a modular NestJS architecture with:
+
+- **Controllers**: Handle HTTP requests and responses
+- **Services**: Business logic implementation
+- **Entities**: TypeORM database models
+- **DTOs**: Data Transfer Objects for validation
+- **Guards**: Request authorization and validation
+- **Modules**: Feature-based organization
+
+## 📁 Project Structure
+
+```
+src/
+├── app.controller.ts          # Main application controller
+├── app.module.ts             # Root module
+├── app.service.ts            # Main application service
+├── main.ts                   # Application entry point
+├── events/                   # Events module
+│   ├── controllers/          # Event controllers
+│   ├── services/            # Event services
+│   ├── entities/            # Event entities
+│   ├── dto/                 # Event DTOs
+│   └── guards/              # Event guards
+└── users/                   # Users module
+    ├── controllers/         # User controllers
+    ├── services/           # User services
+    └── interfaces/         # User interfaces
 ```
 
-## Compile and run the project
+## 🛠️ Installation & Setup
+
+1. **Clone the repository**
+
+   ```bash
+   git clone git@github.com:vilarb/events7-be.git
+   cd events7-be
+   ```
+
+2. **Create environment file and add the correct values**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. **Start the application**
+   ```bash
+   docker-compose up --build
+   ```
+
+The API will be available at `http://localhost:3000`
+
+## 🧪 Testing
+
+### Run Tests
 
 ```bash
-# development
-$ npm run start
+# Unit tests
+npm run test
 
-# watch mode
-$ npm run start:dev
+# Unit tests in watch mode
+npm run test:watch
 
-# production mode
-$ npm run start:prod
+# Test coverage
+npm run test:cov
+
+# E2E tests
+npm run test:e2e
 ```
 
-## Run tests
+### Test Coverage
+
+The project includes comprehensive test coverage for:
+
+- Controllers
+- Services
+- E2E scenarios
+
+## 🔧 Development
+
+### Available Scripts
 
 ```bash
-# unit tests
-$ npm run test
+# Development
+npm run start:dev          # Start in development mode
+npm run start:debug        # Start in debug mode
 
-# e2e tests
-$ npm run test:e2e
+# Production
+npm run build             # Build the application
+npm run start:prod        # Start in production mode
 
-# test coverage
-$ npm run test:cov
+# Code Quality
+npm run lint              # Run ESLint
+npm run format            # Format code with Prettier
+
+# Testing
+npm run test              # Run unit tests
+npm run test:e2e          # Run E2E tests
 ```
 
-## Deployment
+#### ❗️Important: Running scripts outside of the container can fail if external database is not provided
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### Code Style
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+The project uses:
+
+- **ESLint** for code linting
+- **Prettier** for code formatting
+- **TypeScript** for type safety
+
+### Database Migrations
+
+The database schema is automatically synchronized using TypeORM's `synchronize: true` option. For production, consider using migrations instead.
+
+## 🐳 Docker
+
+### Docker Compose Services
+
+- **api**: NestJS application
+- **db**: PostgreSQL database
+
+### Docker Commands
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Build and start all services
+docker-compose up --build
+
+# Start services in background
+docker-compose up -d
+
+# Stop all services
+docker-compose down
+
+# Stop all services and remove volume (clear DB)
+docker-compose down -v
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Database
 
-## Resources
+The container uses postgres, but is compatible with other standard mysql based databases
 
-Check out a few resources that may come in handy when working with NestJS:
+## 💡 Caveats
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Authentication
 
-## Support
+The app uses the https://europe-west1-o7tools.cloudfunctions.net/fun7-ad-partner-expertise-test to verify if the user has CUD priviliges for the event entity. While testing the endpoint I realized that it is quite unreliable and changes often (sometimes just commits seppuku and sometimes changes parameters from camel case to snake case). Therefore everything that the API returns other than {"ads": "sure, why not"} is treated as a failed authorization and throws a ForbiddenException.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Getting the IP address
 
-## Stay in touch
+As the requests coming to the backend are routed through the local network, the public ip is never exposed. Thats why a small helper was built into the frontend that gets the ip from a free service (https://api.ipify.org). The ip is then sent over the network as a header named client-ip. I understand that this is an unsafe practice, as it allows any request to simply fake the header, but an ip can just as easily be changed by routing the request through a VPN, so this approach makes things a bit easier for the development environment.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Nevertheless, this functionality should be removed before deploying to a production scale application. The code for ip handling in those cases is already present.
