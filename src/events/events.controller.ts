@@ -9,7 +9,12 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
+import {
+  ApiOperation,
+  ApiResponse,
+  ApiParam,
+  ApiHeader,
+} from '@nestjs/swagger';
 import { EventsService } from './events.service';
 import { FindManyOptions, ILike } from 'typeorm';
 import { CreateEventDto } from './dto/create-event.dto';
@@ -20,6 +25,11 @@ import { AdsEventGuard } from './guards/adsEvent.guard';
 
 @Controller('events')
 @UseGuards(AdsEventGuard)
+@ApiHeader({
+  name: 'client-ip',
+  description: 'Client IP address',
+  required: false,
+})
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 

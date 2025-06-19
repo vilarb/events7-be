@@ -67,6 +67,7 @@ export class AdsEventGuard implements CanActivate {
 
   /**
    * Check if the user is authorized to perform operations on ads-type events.
+   * First read ip from request headers, to allow for overrides from the frontend in the development environment.
    *
    * @param request - The request object
    * @returns True if the user is authorized, false otherwise
