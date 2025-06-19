@@ -21,8 +21,8 @@ describe('AppController', () => {
       expect(appController).toBeDefined();
     });
 
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "May the API be with you!"', () => {
+      expect(appController.getHello()).toBe('May the API be with you!');
     });
 
     it('should call appService.getHello()', () => {
